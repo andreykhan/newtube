@@ -11,7 +11,7 @@ def index(request):
     return render(request, template, context)
 
 
-def group_posts(request, name):
+def group_posts(request, slug):
     template = 'posts/group_list.html'
     text = 'Здесь будет информация о группах проекта Yatube'
     context = {
