@@ -1,4 +1,88 @@
-{% extends 'base.html' %}
-<!--{% block content %}
-  Это главная страница проекта «Анфиса для друзей»!
-{% endblock %} -->
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="static/img/fav/fav.ico" type="image">
+    <link rel="apple-touch-icon" sizes="180x180" href="../img/fav/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/fav/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/fav/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <title>Newtube</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-light" style="background-color: lightskyblue">
+        <div class="container">
+          <a class="navbar-brand" href="{% url 'posts:index' %}">
+            <img src="/static/img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            <span style="color:red">New</span>tube
+          </a>
+          <ul class="nav  nav-pills">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'about:author' %}">
+                Об авторе
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'about:tech' %}">
+                Технологии
+              </a>
+            </li>
+            <!-- пункты меню видны только авторизованному пользователю -->
+            <li class="nav-item">
+              <a class="nav-link" href="../posts/create_post.html">
+                Новая запись
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link link-light " href="../users/password_change_form.html">
+                Изменить пароль
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link link-light" href="../users/logged_out.html">Выйти</a>
+            </li>
+            <!-- конец пункты меню видны только авторизованному пользователю -->
+            <!-- пункты меню видны только неавторизованному пользователю -->
+            <li class="nav-item">
+              <a class="nav-link link-light" href="../users/login.html">
+                Войти
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link link-light " href="../users/signup.html">Регистрация</a>
+            </li>
+            <!-- конец пункты меню видны только неавторизованному пользователю -->
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div class="container py-5">
+        <h1>"Lorem ipsum"</h1>
+        <p>Lorem</p>
+
+{% for post in posts %}
+  <ul>
+    <li>
+     <b> Название публикации: {{ post.post_name }} </b>
+    </li>
+    <li>
+     <b> Автор: {{ post.author }} </b>
+    </li>
+    <li>
+     <b> Дата публикации: {{ post.pub_date|date:"d E Y" }} </b>
+    </li>
+  </ul>
+  <p>{{ post.text }}</p>
+  <!--<a href="">все записи группы</a>-->
+  <a href="/group/{{ post.group }}">все записи группы</a>
+  {% if not forloop.last %}<hr>{% endif %}
+{% endfor %}
+
+        <footer class="border-top text-center py-3">
+      <p>© 2021 Copyright <span style="color:red">New</span>tube</p>
+    </footer>
