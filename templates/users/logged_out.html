@@ -16,7 +16,7 @@
     <header>
       <nav class="navbar navbar-light" style="background-color: lightskyblue">
         <div class="container">
-          <a class="navbar-brand" href="../posts/index.html">
+          <a class="navbar-brand" href="{% url 'posts:index' %}">
             <img src="/static/img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
             <span style="color:red">New</span>tube
           </a>        
@@ -40,7 +40,7 @@
       </div>
     </main>
 	  <footer class="border-top text-center py-3">
-      <p>© 2021 Copyright <span style="color:red">New</span>tube</p>
+      <p>© {{ year }} Copyright <span style="color:red">New</span>tube</p>
     </footer>
   </body>
 </html>

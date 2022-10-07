@@ -2,11 +2,56 @@
 <html lang="ru">
   <head>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <title>{% block title %}base html title{% endblock %} | Yatube</title>
   </head>
   <body>
     <header>
-      {% include 'includes/header.html' %}
+      <nav class="navbar navbar-light" style="background-color: lightskyblue">
+        <div class="container">
+          <a class="navbar-brand" href="{% url 'posts:index' %}">
+            <img src="/static/img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            <span style="color:red">New</span>tube
+          </a>
+          <ul class="nav  nav-pills">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'about:author' %}">
+                Об авторе
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'about:tech' %}">
+                Технологии
+              </a>
+            </li>
+            <!-- пункты меню видны только авторизованному пользователю -->
+            <li class="nav-item">
+              <a class="nav-link" href="../posts/create_post.html">
+                Новая запись
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link link-light " href="{% url 'users:password_change' %}">
+                Изменить пароль
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link link-light" href="{% url 'users:logout' %}">Выйти</a>
+            </li>
+            <!-- конец пункты меню видны только авторизованному пользователю -->
+            <!-- пункты меню видны только неавторизованному пользователю -->
+            <li class="nav-item">
+              <a class="nav-link link-light" href="{% url 'users:login' %}">
+                Войти
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link link-light " href="{% url 'users:signup' %}">Регистрация</a>
+            </li>
+            <!-- конец пункты меню видны только неавторизованному пользователю -->
+          </ul>
+        </div>
+      </nav>
     </header>
     <main>
       <h1> {{ text }} </h1>
